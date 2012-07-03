@@ -1,4 +1,5 @@
-function addStatus(options) {
+var Status = function() {};
+Status.prototype.add = function(options) {
     $.ajax({
         url: '/statuses',
         type: 'POST',
@@ -6,13 +7,15 @@ function addStatus(options) {
         data: { text: options.text },
         success: options.success
     });
-}
+};
 
 jQuery(function() {
+    var status = new Status();
+
     $("#new-status").submit(function(e) {
         e.preventDefault();
 
-        addStatus({
+        status.add({
             text: $(this).find('textarea').val(),
             success: function(data) {
                 $("#statuses").append('<li>' + data.text + '</li>');
