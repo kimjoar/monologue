@@ -12,16 +12,18 @@ Status.prototype.add = function(options) {
 var StatusView = function(status) {
     this.status = status;
 
-    $("#new-status").submit(function(e) {
-        e.preventDefault();
+    var add = $.proxy(this.addStatus, this);
+    $("#new-status").submit(add);
+};
+StatusView.prototype.addStatus = function(e) {
+    e.preventDefault();
 
-        status.add({
-            text: $(this).find('textarea').val(),
-            success: function(data) {
-                $("#statuses").append('<li>' + data.text + '</li>');
-                $("#new-status textarea").val("");
-            }
-        });
+    this.status.add({
+        text: $("#new-status").find('textarea').val(),
+        success: function(data) {
+            $("#statuses").append('<li>' + data.text + '</li>');
+            $("#new-status textarea").val("");
+        }
     });
 };
 
