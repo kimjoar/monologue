@@ -9,8 +9,8 @@ Status.prototype.add = function(options) {
     });
 };
 
-jQuery(function() {
-    var status = new Status();
+var StatusView = function(status) {
+    this.status = status;
 
     $("#new-status").submit(function(e) {
         e.preventDefault();
@@ -23,4 +23,9 @@ jQuery(function() {
             }
         });
     });
+};
+
+jQuery(function() {
+    var status = new Status();
+    new StatusView(status);
 });
