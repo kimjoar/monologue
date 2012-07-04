@@ -29,10 +29,13 @@ NewStatusView.prototype.addStatus = function(e) {
     });
 };
 NewStatusView.prototype.text = function() {
-    return this.el.find('textarea').val();
+    return this.DOM('textarea').val();
 };
 NewStatusView.prototype.reset = function() {
-    this.el.find('textarea').val("");
+    this.DOM('textarea').val("");
+};
+NewStatusView.prototype.DOM = function(selector) {
+    return this.el.find(selector);
 };
 
 var StatusesView = function(el, statuses) {
