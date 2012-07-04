@@ -6,6 +6,12 @@ get '/' do
 end
 
 post '/statuses' do
+  text = if params[:text]
+           { text: params[:text] }
+         else
+           JSON.parse(request.body.read)
+         end
+
   content_type :json
-  { text: params[:text] }.to_json
+  text.to_json
 end
