@@ -3,10 +3,12 @@ var Status = Simple.Model.extend({
 });
 
 var Statuses = function() {};
-Statuses.prototype.add = function(options) {
-    var status = new Status({ text: options.text });
+Statuses.prototype.add = function(text) {
+    var status = new Status({ text: text });
     status.save({
-        success: options.success
+        success: function(data) {
+            Simple.events.trigger("success", data.text);
+        }
     });
 };
 
@@ -24,13 +26,7 @@ var NewStatusView = Simple.View.extend({
 
     addStatus: function(e) {
         e.preventDefault();
-
-        this.statuses.add({
-            text: this.text(),
-            success: function(data) {
-                Simple.events.trigger("success", data.text);
-            }
-        });
+        this.statuses.add(this.text());
     },
 
     text: function() {
