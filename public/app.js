@@ -9,15 +9,17 @@ Statuses.prototype.add = function(options) {
     });
 };
 
-var NewStatusView = function(el, statuses) {
-    this.el = el;
-    this.statuses = statuses;
+var NewStatusView = Simple.View.extend({
+    initialize: function(options) {
+        this.el = options.el;
+        this.statuses = options.statuses;
 
-    Simple.events.on("success", this.reset, this);
+        Simple.events.on("success", this.reset, this);
 
-    var add = $.proxy(this.addStatus, this);
-    this.el.submit(add);
-};
+        var add = $.proxy(this.addStatus, this);
+        this.el.submit(add);
+    }
+});
 NewStatusView.prototype.addStatus = function(e) {
     e.preventDefault();
 
@@ -34,9 +36,6 @@ NewStatusView.prototype.text = function() {
 NewStatusView.prototype.reset = function() {
     this.DOM('textarea').val("");
 };
-NewStatusView.prototype.DOM = function(selector) {
-    return this.el.find(selector);
-};
 
 var StatusesView = function(el, statuses) {
     this.el = el;
@@ -50,6 +49,6 @@ StatusesView.prototype.appendStatus = function(text) {
 
 jQuery(function() {
     var statuses = new Statuses();
-    new NewStatusView($("#new-status"), statuses);
+    new NewStatusView({ el: $("#new-status"), statuses: statuses });
     new StatusesView($("#statuses"), statuses);
 });
