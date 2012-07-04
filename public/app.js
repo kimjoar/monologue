@@ -10,14 +10,15 @@ Statuses.prototype.add = function(options) {
 };
 
 var NewStatusView = Simple.View.extend({
+    events: {
+        "submit": "addStatus"
+    },
+
     initialize: function(options) {
         this.el = options.el;
         this.statuses = options.statuses;
 
         Simple.events.on("success", this.reset, this);
-
-        var add = $.proxy(this.addStatus, this);
-        this.el.submit(add);
     }
 });
 NewStatusView.prototype.addStatus = function(e) {
