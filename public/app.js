@@ -20,12 +20,15 @@ NewStatusView.prototype.addStatus = function(e) {
 
     var that = this;
     this.statuses.add({
-        text: $("#new-status").find('textarea').val(),
+        text: this.text(),
         success: function(data) {
             that.appendStatus(data.text);
             that.reset();
         }
     });
+};
+NewStatusView.prototype.text = function() {
+    return $("#new-status").find('textarea').val();
 };
 NewStatusView.prototype.reset = function() {
     $("#new-status textarea").val("");
