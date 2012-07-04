@@ -19,24 +19,27 @@ var NewStatusView = Simple.View.extend({
         this.statuses = options.statuses;
 
         Simple.events.on("success", this.reset, this);
+    },
+
+    addStatus: function(e) {
+        e.preventDefault();
+
+        this.statuses.add({
+            text: this.text(),
+            success: function(data) {
+                Simple.events.trigger("success", data.text);
+            }
+        });
+    },
+
+    text: function() {
+        return this.DOM('textarea').val();
+    },
+
+    reset: function() {
+        this.DOM('textarea').val("");
     }
 });
-NewStatusView.prototype.addStatus = function(e) {
-    e.preventDefault();
-
-    this.statuses.add({
-        text: this.text(),
-        success: function(data) {
-            Simple.events.trigger("success", data.text);
-        }
-    });
-};
-NewStatusView.prototype.text = function() {
-    return this.DOM('textarea').val();
-};
-NewStatusView.prototype.reset = function() {
-    this.DOM('textarea').val("");
-};
 
 var StatusesView = function(el, statuses) {
     this.el = el;
