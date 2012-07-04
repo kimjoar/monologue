@@ -20,9 +20,7 @@ var NewStatusView = Simple.View.extend({
     },
 
     initialize: function(options) {
-        this.el = options.el;
         this.statuses = options.statuses;
-
         this.statuses.on("added", this.reset, this);
     },
 
@@ -42,9 +40,7 @@ var NewStatusView = Simple.View.extend({
 
 var StatusesView = Simple.View.extend({
     initialize: function(options) {
-        this.el = options.el;
         this.statuses = options.statuses;
-
         this.statuses.on("added", this.appendStatus, this);
     },
 
