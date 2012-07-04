@@ -12,7 +12,6 @@ Statuses.prototype.add = function(options) {
 var NewStatusView = function(statuses) {
     this.statuses = statuses;
 
-    Simple.events.on("success", this.appendStatus, this);
     Simple.events.on("success", this.reset, this);
 
     var add = $.proxy(this.addStatus, this);
@@ -34,11 +33,17 @@ NewStatusView.prototype.text = function() {
 NewStatusView.prototype.reset = function() {
     $("#new-status textarea").val("");
 };
-NewStatusView.prototype.appendStatus = function(text) {
+
+var StatusesView = function(statuses) {
+    this.statuses = statuses;
+    Simple.events.on("success", this.appendStatus, this);
+};
+StatusesView.prototype.appendStatus = function(text) {
     $("#statuses").append('<li>' + text + '</li>');
 };
 
 jQuery(function() {
     var statuses = new Statuses();
     new NewStatusView(statuses);
+    new StatusesView(statuses);
 });
