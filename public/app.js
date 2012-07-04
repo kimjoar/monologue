@@ -18,13 +18,20 @@ var StatusView = function(status) {
 StatusView.prototype.addStatus = function(e) {
     e.preventDefault();
 
+    var that = this;
     this.status.add({
         text: $("#new-status").find('textarea').val(),
         success: function(data) {
-            $("#statuses").append('<li>' + data.text + '</li>');
-            $("#new-status textarea").val("");
+            that.appendStatus(data.text);
+            that.reset();
         }
     });
+};
+StatusView.prototype.reset = function() {
+    $("#new-status textarea").val("");
+};
+StatusView.prototype.appendStatus = function(text) {
+    $("#statuses").append('<li>' + text + '</li>');
 };
 
 jQuery(function() {
