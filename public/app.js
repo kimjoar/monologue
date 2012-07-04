@@ -9,13 +9,14 @@ Statuses.prototype.add = function(options) {
     });
 };
 
-var NewStatusView = function(statuses) {
+var NewStatusView = function(el, statuses) {
+    this.el = el;
     this.statuses = statuses;
 
     Simple.events.on("success", this.reset, this);
 
     var add = $.proxy(this.addStatus, this);
-    $("#new-status").submit(add);
+    this.el.submit(add);
 };
 NewStatusView.prototype.addStatus = function(e) {
     e.preventDefault();
@@ -28,22 +29,24 @@ NewStatusView.prototype.addStatus = function(e) {
     });
 };
 NewStatusView.prototype.text = function() {
-    return $("#new-status").find('textarea').val();
+    return this.el.find('textarea').val();
 };
 NewStatusView.prototype.reset = function() {
-    $("#new-status textarea").val("");
+    this.el.find('textarea').val("");
 };
 
-var StatusesView = function(statuses) {
+var StatusesView = function(el, statuses) {
+    this.el = el;
     this.statuses = statuses;
+
     Simple.events.on("success", this.appendStatus, this);
 };
 StatusesView.prototype.appendStatus = function(text) {
-    $("#statuses").append('<li>' + text + '</li>');
+    this.el.append('<li>' + text + '</li>');
 };
 
 jQuery(function() {
     var statuses = new Statuses();
-    new NewStatusView(statuses);
-    new StatusesView(statuses);
+    new NewStatusView($("#new-status"), statuses);
+    new StatusesView($("#statuses"), statuses);
 });
