@@ -1,10 +1,11 @@
+var Status = Simple.Model.extend({
+    url: '/status'
+});
+
 var Statuses = function() {};
 Statuses.prototype.add = function(options) {
-    $.ajax({
-        url: '/status',
-        type: 'POST',
-        dataType: 'json',
-        data: { text: options.text },
+    var status = new Status({ text: options.text });
+    status.save({
         success: options.success
     });
 };
