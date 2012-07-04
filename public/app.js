@@ -2,15 +2,17 @@ var Status = Simple.Model.extend({
     url: '/status'
 });
 
-var Statuses = function() {};
-Statuses.prototype.add = function(text) {
-    var status = new Status({ text: text });
-    status.save({
-        success: function(data) {
-            Simple.events.trigger("success", data.text);
-        }
-    });
-};
+var Statuses = Simple.Model.extend({
+    add: function(text) {
+        var status = new Status({ text: text });
+        var that = this;
+        status.save({
+            success: function(data) {
+                that.trigger("added", data.text);
+            }
+        });
+    }
+});
 
 var NewStatusView = Simple.View.extend({
     events: {
@@ -21,7 +23,7 @@ var NewStatusView = Simple.View.extend({
         this.el = options.el;
         this.statuses = options.statuses;
 
-        Simple.events.on("success", this.reset, this);
+        this.statuses.on("added", this.reset, this);
     },
 
     addStatus: function(e) {
@@ -43,7 +45,7 @@ var StatusesView = Simple.View.extend({
         this.el = options.el;
         this.statuses = options.statuses;
 
-        Simple.events.on("success", this.appendStatus, this);
+        this.statuses.on("added", this.appendStatus, this);
     },
 
     appendStatus: function(text) {
