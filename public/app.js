@@ -1,5 +1,5 @@
-var Status = function() {};
-Status.prototype.add = function(options) {
+var Statuses = function() {};
+Statuses.prototype.add = function(options) {
     $.ajax({
         url: '/statuses',
         type: 'POST',
@@ -9,17 +9,17 @@ Status.prototype.add = function(options) {
     });
 };
 
-var StatusView = function(status) {
-    this.status = status;
+var NewStatusView = function(statuses) {
+    this.statuses = statuses;
 
     var add = $.proxy(this.addStatus, this);
     $("#new-status").submit(add);
 };
-StatusView.prototype.addStatus = function(e) {
+NewStatusView.prototype.addStatus = function(e) {
     e.preventDefault();
 
     var that = this;
-    this.status.add({
+    this.statuses.add({
         text: $("#new-status").find('textarea').val(),
         success: function(data) {
             that.appendStatus(data.text);
@@ -27,14 +27,14 @@ StatusView.prototype.addStatus = function(e) {
         }
     });
 };
-StatusView.prototype.reset = function() {
+NewStatusView.prototype.reset = function() {
     $("#new-status textarea").val("");
 };
-StatusView.prototype.appendStatus = function(text) {
+NewStatusView.prototype.appendStatus = function(text) {
     $("#statuses").append('<li>' + text + '</li>');
 };
 
 jQuery(function() {
-    var status = new Status();
-    new StatusView(status);
+    var statuses = new Statuses();
+    new NewStatusView(statuses);
 });
