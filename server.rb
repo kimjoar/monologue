@@ -5,7 +5,7 @@ get '/' do
   File.read(File.join('public', 'index.html'))
 end
 
-post '/statuses' do
+post '/status' do
   text = if params[:text]
            { text: params[:text] }
          else

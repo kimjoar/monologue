@@ -1,7 +1,7 @@
 var Statuses = function() {};
 Statuses.prototype.add = function(options) {
     $.ajax({
-        url: '/statuses',
+        url: '/status',
         type: 'POST',
         dataType: 'json',
         data: { text: options.text },
