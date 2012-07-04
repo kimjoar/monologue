@@ -41,18 +41,21 @@ var NewStatusView = Simple.View.extend({
     }
 });
 
-var StatusesView = function(el, statuses) {
-    this.el = el;
-    this.statuses = statuses;
+var StatusesView = Simple.View.extend({
+    initialize: function(options) {
+        this.el = options.el;
+        this.statuses = options.statuses;
 
-    Simple.events.on("success", this.appendStatus, this);
-};
-StatusesView.prototype.appendStatus = function(text) {
-    this.el.append('<li>' + text + '</li>');
-};
+        Simple.events.on("success", this.appendStatus, this);
+    },
+
+    appendStatus: function(text) {
+        this.el.append('<li>' + text + '</li>');
+    }
+});
 
 jQuery(function() {
     var statuses = new Statuses();
     new NewStatusView({ el: $("#new-status"), statuses: statuses });
-    new StatusesView($("#statuses"), statuses);
+    new StatusesView({ el: $("#statuses"), statuses: statuses });
 });
