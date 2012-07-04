@@ -12,18 +12,19 @@ Statuses.prototype.add = function(options) {
 var NewStatusView = function(statuses) {
     this.statuses = statuses;
 
+    Simple.events.on("success", this.appendStatus, this);
+    Simple.events.on("success", this.reset, this);
+
     var add = $.proxy(this.addStatus, this);
     $("#new-status").submit(add);
 };
 NewStatusView.prototype.addStatus = function(e) {
     e.preventDefault();
 
-    var that = this;
     this.statuses.add({
         text: this.text(),
         success: function(data) {
-            that.appendStatus(data.text);
-            that.reset();
+            Simple.events.trigger("success", data.text);
         }
     });
 };
