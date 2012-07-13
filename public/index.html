@@ -4,21 +4,15 @@
     <title>JavaScript abstractions</title>
     <meta charset="utf-8">
     <script src="jquery-1.7.2.js"></script>
-    <script src="simple.js"></script>
+    <script src="underscore.js"></script>
+    <script src="backbone.js"></script>
     <script src="app.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
-    <style type="text/css">
-      body { padding: 0; margin: 0; background-color: #fff; }
-      #new-status { margin: 20px; padding: 20px; background-color: #67A9C3; }
-      #statuses { margin: 20px; padding: 20px; background-color: #92B456; }
-      h2 { font-family: Abel, sans-serif; margin: 0; padding: 0 0 5px 0;}
-      input { background-color: #ddd; border: 0; }
-      input:active { background-color: #bbb; }
-    </style>
+    <link href="style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <div id="new-status">
-      <h2>Ny monolog</h2>
+      <h2>New monolog</h2>
       <form action="">
         <textarea></textarea><br>
         <input type="submit" value="Post"/>
@@ -26,7 +20,7 @@
     </div>
 
     <div id="statuses">
-      <h2>Monologer</h2>
+      <h2>Monologs</h2>
       <ul></ul>
     </div>
   </body>

@@ -1,0 +1,8 @@
+body { padding: 0; margin: 0; background-color: #fff; }
+
+h2 { font-family: Abel, sans-serif; margin: 0; padding: 0 0 5px 0;}
+input { background-color: #ddd; border: 0; }
+input:active { background-color: #bbb; }
+
+#new-status { margin: 20px; padding: 20px; background-color: #67A9C3; }
+#statuses { margin: 20px; padding: 20px; background-color: #92B456; }
