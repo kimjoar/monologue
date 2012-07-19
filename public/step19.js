@@ -1,5 +1,3 @@
-var events = _.clone(Backbone.Events);
-
 var Status = Backbone.Model.extend({
     url: '/status'
 });
