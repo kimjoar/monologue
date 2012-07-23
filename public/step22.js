@@ -18,7 +18,7 @@ var NewStatusView = Backbone.View.extend({
     addStatus: function(e) {
         e.preventDefault();
 
-        this.collection.add({ text: this.$('textarea').val() });
+        this.collection.create({ text: this.$('textarea').val() });
     },
 
     clearInput: function() {
