@@ -2,7 +2,8 @@ requirejs.config({
     paths: {
         'jquery': 'vendor/jquery-1.8.3',
         'underscore': 'vendor/underscore-1.4.2',
-        'backbone': 'vendor/backbone-0.9.2'
+        'backbone': 'vendor/backbone-0.9.2',
+        'text': 'vendor/text-2.0.3'
     },
     shim: {
         'backbone': {

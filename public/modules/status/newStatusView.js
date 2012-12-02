@@ -1,11 +1,7 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'text!modules/status/newStatusView.html'], function(Backbone, newStatusViewTemplate) {
 
     var NewStatusView = Backbone.View.extend({
-        template: '<h2>New monolog</h2>' +
-                  '<form>' +
-                  '  <textarea></textarea><br>' +
-                  '  <input type="submit" value="Post"/>' +
-                  '</form>',
+        template: newStatusViewTemplate,
 
         events: {
             "submit form": "addStatus"
