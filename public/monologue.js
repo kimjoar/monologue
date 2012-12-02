@@ -15,27 +15,7 @@ requirejs.config({
     }
 });
 
-require(['jquery', 'backbone', 'modules/status/statuses'], function($, Backbone, Statuses) {
-
-    var NewStatusView = Backbone.View.extend({
-        events: {
-            "submit form": "addStatus"
-        },
-
-        initialize: function(options) {
-            this.collection.on("add", this.clearInput, this);
-        },
-
-        addStatus: function(e) {
-            e.preventDefault();
-
-            this.collection.create({ text: this.$('textarea').val() });
-        },
-
-        clearInput: function() {
-            this.$('textarea').val('');
-        }
-    });
+require(['jquery', 'backbone', 'modules/status/statuses', 'modules/status/newStatusView'], function($, Backbone, Statuses, NewStatusView) {
 
     var StatusesView = Backbone.View.extend({
         initialize: function(options) {
