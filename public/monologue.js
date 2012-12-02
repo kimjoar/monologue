@@ -25,7 +25,10 @@ require([
 
     $(document).ready(function() {
         var statuses = new Statuses();
-        new NewStatusView({ el: $('#new-status'), collection: statuses });
+
+        var newStatusView = new NewStatusView({ el: $('#new-status'), collection: statuses });
+        newStatusView.render();
+
         new StatusesView({ el: $('#statuses'), collection: statuses });
     });
 
