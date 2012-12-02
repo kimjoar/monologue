@@ -15,11 +15,7 @@ requirejs.config({
     }
 });
 
-require(['jquery', 'backbone'], function($, Backbone) {
-
-    var Status = Backbone.Model.extend({
-        url: '/status'
-    });
+require(['jquery', 'backbone', 'modules/status/status'], function($, Backbone, Status) {
 
     var Statuses = Backbone.Collection.extend({
         model: Status
