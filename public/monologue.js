@@ -15,11 +15,7 @@ requirejs.config({
     }
 });
 
-require(['jquery', 'backbone', 'modules/status/status'], function($, Backbone, Status) {
-
-    var Statuses = Backbone.Collection.extend({
-        model: Status
-    });
+require(['jquery', 'backbone', 'modules/status/statuses'], function($, Backbone, Statuses) {
 
     var NewStatusView = Backbone.View.extend({
         events: {
