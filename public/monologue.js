@@ -29,7 +29,8 @@ require([
         var newStatusView = new NewStatusView({ el: $('#new-status'), collection: statuses });
         newStatusView.render();
 
-        new StatusesView({ el: $('#statuses'), collection: statuses });
+        var statusesView = new StatusesView({ el: $('#statuses'), collection: statuses });
+        statusesView.render();
     });
 
 });
