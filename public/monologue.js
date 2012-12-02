@@ -15,17 +15,13 @@ requirejs.config({
     }
 });
 
-require(['jquery', 'backbone', 'modules/status/statuses', 'modules/status/newStatusView'], function($, Backbone, Statuses, NewStatusView) {
-
-    var StatusesView = Backbone.View.extend({
-        initialize: function(options) {
-            this.collection.on("add", this.appendStatus, this);
-        },
-
-        appendStatus: function(status) {
-            this.$('ul').append('<li>' + status.escape("text") + '</li>');
-        }
-    });
+require([
+    'jquery',
+    'backbone',
+    'modules/status/statuses',
+    'modules/status/newStatusView',
+    'modules/status/statusesView'
+], function($, Backbone, Statuses, NewStatusView, StatusesView) {
 
     $(document).ready(function() {
         var statuses = new Statuses();
