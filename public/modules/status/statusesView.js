@@ -1,8 +1,7 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'text!modules/status/statusesTemplate.html'], function(Backbone, statusesTemplate) {
 
     var StatusesView = Backbone.View.extend({
-        template: '<h2>Monologs</h2>' +
-                  '<ul></ul>',
+        template: statusesTemplate,
 
         initialize: function(options) {
             this.collection.on("add", this.appendStatus, this);
