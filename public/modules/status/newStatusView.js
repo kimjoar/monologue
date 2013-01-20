@@ -1,7 +1,11 @@
-define(['backbone', 'text!modules/status/newStatusView.html'], function(Backbone, newStatusViewTemplate) {
+define([
+    'backbone'
+  , 'text!modules/status/newStatusView.html'
+  , 'hogan'
+], function(Backbone, newStatusViewTemplate, hogan) {
 
     var NewStatusView = Backbone.View.extend({
-        template: newStatusViewTemplate,
+        template: hogan.compile(newStatusViewTemplate),
 
         events: {
             "submit form": "addStatus"
@@ -12,7 +16,7 @@ define(['backbone', 'text!modules/status/newStatusView.html'], function(Backbone
         },
 
         render: function() {
-            this.$el.html(this.template);
+            this.$el.html(this.template.render());
         },
 
         addStatus: function(e) {
