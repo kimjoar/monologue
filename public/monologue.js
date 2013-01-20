@@ -3,7 +3,8 @@ requirejs.config({
         'jquery': 'vendor/jquery-1.8.3',
         'underscore': 'vendor/underscore-1.4.2',
         'backbone': 'vendor/backbone-0.9.2',
-        'text': 'vendor/text-2.0.3'
+        'text': 'vendor/text-2.0.3',
+        'hogan': 'vendor/hogan-2.0.0'
     },
     shim: {
         'backbone': {
@@ -12,6 +13,9 @@ requirejs.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'hogan': {
+            exports: 'Hogan'
         }
     }
 });
