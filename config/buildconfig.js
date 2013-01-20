@@ -21,6 +21,8 @@
     stubModules: ['text'],
 
     // keep 'em comments
-    preserveLicenseComments: true
+    preserveLicenseComments: true,
+
+    optimize: 'none'
 })
 
