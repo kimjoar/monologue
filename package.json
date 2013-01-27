@@ -14,5 +14,9 @@
   "license": "BSD",
   "dependencies": {
     "express": "~3.0.3"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm":  "1.1.x"
   }
 }
