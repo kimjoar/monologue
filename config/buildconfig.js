@@ -14,15 +14,7 @@
     // name the optimized file
     out: '../build/monologue.js',
 
-    // inlines the text for any text! dependencies
-    inlineText: true,
-
-    // we don't need the text plugin in production, as it is inlined
-    stubModules: ['text'],
-
     // keep 'em comments
-    preserveLicenseComments: true,
-
-    optimize: 'none'
+    preserveLicenseComments: true
 })
 
